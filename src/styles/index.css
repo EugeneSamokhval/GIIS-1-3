@@ -1,0 +1,37 @@
+.btn{
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin:10px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 15px;
+}
+.btn:hover{
+    background-color: #490808;
+}
+.active_btn{
+    background-color: #2e0505;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin:10px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 15px;
+}
+body{
+    background-color: #cacaca;
+    align-content: center;
+    display:block;
+    padding-left: 15%;
+}
+.canvas_style{
+    background-color:white;
+    border-radius: 25px;
+}
+.grid-container{
+    display: inline-grid;
+    column-gap: 50px;
+}

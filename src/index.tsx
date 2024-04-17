@@ -9,11 +9,11 @@ import { useDrawler } from "./draw-tools/useDrawler"
 import { useErase } from "./draw-tools/useErase"
 import { useLiner } from "./draw-tools/useLiner"
 import { getCursorPosition } from "./draw-tools/utils"
-import "./styles/output.css"
 import { useCircles } from "./draw-tools/useCircles"
 import { useElipsis } from "./draw-tools/useElipses"
 import { useParabola } from "./draw-tools/useParabola"
 import { useHyperbola } from "./draw-tools/useHyperbola"
+import "./styles/index.css"
 
 document['debug'] = true
 
@@ -46,8 +46,8 @@ export function App() {
   const { clear } = useClear(draw)
   const { pallete, addNewColor, changeColor } = useColor(draw)
 
-  const pageWidth = 1000
-  const pageHeight = 1000
+  const pageWidth = 1280
+  const pageHeight = 640
 
   function downloadImage() {
     var dataURL = canvasRef.current.toDataURL("image/png")
@@ -108,11 +108,9 @@ export function App() {
   const onCanvasMouseUp = () => setMouseDown(false)
 
   return (
-    <div class={`mx-auto mt-[25px] text-sm`} style={{ width: pageWidth }}>
+    <div class={`canvas_allign`} style={{ width: pageWidth }}>
       <div
-        class={`
-      flex mx-auto gap-[3px] mb-[3px]
-      `}
+        class={`load_box`}
       >
         <button class="btn" onClick={() => fileInput.current.click()}>
           Load file
@@ -131,7 +129,7 @@ export function App() {
       <canvas
         ref={canvasRef}
         style={{ "image-rendering": "pixelated" }}
-        class={`mx-auto bg-white shadow shadow-indigo-100`}
+        class={`canvas_style`}
         onClick={onCanvasClick}
         onMouseDown={onCanvasMouseDown}
         onMouseUp={onCanvasMouseUp}
@@ -139,7 +137,8 @@ export function App() {
         width={pageWidth}
         height={pageHeight}
       ></canvas>
-      <div class={`flex mx-auto gap-[3px] mt-[3px]`}>
+      <div class={"grid-container"}>
+        <div class={"grid-item"}>
         <button class="btn" onClick={() => draw(clear)}>
           clear
         </button>
@@ -185,19 +184,19 @@ export function App() {
         >
           hyperbola
         </button>
-        
+        </div>
 
 
 
-
+      <div class={"grid-item"}>
         <div class="flex relative panel items-center px-2 gap-2">
           {pallete.map((c) => (
             <button
               key={c.color}
               onClick={c.selectThisColor}
               style={{ backgroundColor: c.color }}
-              class={`h-4 w-4 ${c.isSelected ? "border-[1.5px]" : ""
-                } border border-indigo-400 hover:border-[1.5px] transition-all duration-100 ease-in`}
+              class={`btn ${c.isSelected ? "active_btn" : ""
+                }`}
             ></button>
           ))}
           <button
@@ -220,6 +219,7 @@ export function App() {
             <HexAlphaColorPicker color={color} onChange={setColor} />
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
